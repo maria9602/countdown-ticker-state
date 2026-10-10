@@ -36,3 +36,10 @@ The split between `computeRemaining` (pure math) and `CountdownTicker` (the thin
 ## Awkward edge: past deadlines
 
 When the deadline has already passed, the raw `totalMs` returned by `computeRemaining` is **negative** and signed (e.g. `-3000` for 3 seconds overdue), while every decomposed field is zero and `done` is `true`. This lets a caller distinguish "exactly now" from "3s late". If you're driving a display and want a hard zero floor, use `clampRemaining` instead — it keeps the same fields but floors `totalMs` at zero.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
