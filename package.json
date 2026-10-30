@@ -1,6 +1,6 @@
 {
   "name": "countdown-ticker-state",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Maintains the state of a live countdown timer, computing remaining days, hours, minutes, and seconds from a target deadline timestamp.",
   "type": "module",
   "main": "src/index.js",
